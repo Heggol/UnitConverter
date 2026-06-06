@@ -1,0 +1,60 @@
+{
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "debug-base",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release-base",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "gcc-base",
+      "hidden": true,
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "g++"
+      }
+    },
+    {
+      "name": "gcc-debug",
+      "inherits": ["gcc-base", "debug-base"]
+    },
+    {
+      "name": "gcc-release",
+      "inherits": ["gcc-base", "release-base"]
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "gcc-debug",
+      "configurePreset": "gcc-debug",
+      "displayName": "GCC Debug"
+    },
+    {
+      "name": "gcc-debug-clean",
+      "configurePreset": "gcc-debug",
+      "displayName": "GCC Debug (Clean First)",
+      "cleanFirst": true
+    },
+    {
+      "name": "gcc-release",
+      "configurePreset": "gcc-release",
+      "displayName": "GCC Release",
+      "cleanFirst": true
+    }
+  ]
+}
