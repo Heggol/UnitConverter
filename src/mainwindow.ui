@@ -51,7 +51,8 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
+    <iconset resource="../icons/icons.qrc">
+     <normaloff>:/quit.svg</normaloff>:/quit.svg</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -61,7 +62,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons/icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionQuit</sender>
