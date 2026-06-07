@@ -16,6 +16,9 @@ add_executable(UnitConverter
         src/mainwindow.ui
 )
 
+qt_add_resources(RESOURCES icons/icons.qrc)
+target_sources(UnitConverter PRIVATE ${RESOURCES})
+
 target_compile_features(UnitConverter PRIVATE cxx_std_23)
 
 target_link_libraries(UnitConverter PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
