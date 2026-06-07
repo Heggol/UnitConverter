@@ -1,5 +1,5 @@
-#ifndef UNITCONVERTER_MAINWINDOW_HPP
-#define UNITCONVERTER_MAINWINDOW_HPP
+#ifndef UNITCONVERTER_SRC_MAINWINDOW_HPP_
+#define UNITCONVERTER_SRC_MAINWINDOW_HPP_
 
 #include <QMainWindow>
 
@@ -22,4 +22,4 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow* ui;
 };
 
-#endif  // UNITCONVERTER_MAINWINDOW_HPP
+#endif
