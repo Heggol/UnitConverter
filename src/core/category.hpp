@@ -2,6 +2,6 @@
 #include <string>
 
 struct Category {
-  std::string id;
-  std::string base_unit;
+    std::string id;
+    std::string base_unit;
 };

@@ -2,14 +2,14 @@
 #include <string>
 
 struct Unit {
-  std::string id;
-  std::string symbol;
-  std::string category;
+    std::string id;
+    std::string symbol;
+    std::string category;
 
-  double scale;
-  double offset;
+    double scale;
+    double offset;
 
-  double inv_scale;
+    double inv_scale;
 
-  std::string description;
+    std::string description;
 };

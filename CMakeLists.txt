@@ -3,46 +3,26 @@ project(UnitConverter LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
 qt_standard_project_setup()
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-add_executable(UnitConverter
-        src/main.cpp
-        src/mainwindow.cpp
-        src/mainwindow.hpp
-        src/mainwindow.ui
-
-        src/core/category.hpp
-        src/core/unit.hpp
-        src/core/registry.hpp
-        src/core/converter.hpp
-        src/core/service.hpp
-        src/core/category.cpp
-        src/core/unit.cpp
-        src/core/converter.cpp
-        src/core/service.cpp
-        src/core/registry.cpp
-        
-        src/core/modules/length.cpp
-        src/core/modules/mass.cpp
-        src/core/modules/temperature.cpp
-        src/core/modules/data.cpp
-)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp src/*.hpp)
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 qt_add_resources(RESOURCES icons/icons.qrc)
-target_sources(UnitConverter PRIVATE ${RESOURCES})
+target_sources(${PROJECT_NAME} PRIVATE ${RESOURCES})
 
-target_compile_features(UnitConverter PRIVATE cxx_std_23)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 
-target_link_libraries(UnitConverter PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
 
 if (MSVC)
-  target_compile_options(UnitConverter PRIVATE /EHsc) # Exception Handler
+  target_compile_options(${PROJECT_NAME} PRIVATE /EHsc /W4 /WX) # Exception Handler
+else()
+  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
 endif()
-
-#if(UNIX AND NOT APPLE)
-#    target_link_libraries(SonicAtlasVisualizer PRIVATE pthread m dl)
-#endif()

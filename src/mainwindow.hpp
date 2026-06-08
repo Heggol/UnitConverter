@@ -14,16 +14,17 @@ class MainWindow;
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow {
-  Q_OBJECT
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(MainWindow)
 
- public:
-  explicit MainWindow(QWidget* parent = nullptr);
-  ~MainWindow() override;
+   public:
+    explicit MainWindow(QWidget* parent = nullptr);
+    ~MainWindow() override;
 
- private:
-  Ui::MainWindow* ui;
+   private:
+    Ui::MainWindow* ui;
 
-  UnitService service;
+    UnitService service;
 };
 
 #endif
