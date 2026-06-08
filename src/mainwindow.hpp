@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "core/service.hpp"
+
 QT_BEGIN_NAMESPACE
 
 namespace Ui {
@@ -20,6 +22,8 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow* ui;
+
+  UnitService service;
 };
 
 #endif
