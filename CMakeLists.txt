@@ -11,7 +11,7 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 qt_standard_project_setup()
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp src/*.hpp)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp src/*.hpp src/*.ui)
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 qt_add_resources(RESOURCES icons/icons.qrc)
