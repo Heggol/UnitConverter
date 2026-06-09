@@ -31,7 +31,7 @@ const Category& UnitRegistry::getCategory(const std::string& id) const {
 
 std::vector<std::string> UnitRegistry::listCategories() const {
     std::vector<std::string> result;
-    for (const auto& id : categories | std::views::keys) {
+    for (const auto& id : categories | std::views::keys) {  // replace std::views::keys with C++17 compat
         result.push_back(id);
     }
     return result;

@@ -65,6 +65,23 @@
       ]
     },
     {
+      "name": "msvc-ninja-base",
+      "hidden": true,
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "msvc-ninja-debug",
+      "inherits": [
+        "msvc-ninja-base",
+        "debug-base"
+      ]
+    },
+    {
       "hidden": true,
       "name": "Qt",
       "cacheVariables": {
@@ -104,6 +121,11 @@
       "name": "msvc-release",
       "configurePreset": "msvc-release",
       "displayName": "MSVC Release"
+    },
+    {
+      "name": "msvc-ninja-debug",
+      "configurePreset": "msvc-ninja-debug",
+      "displayName": "MSVC Debug (Ninja)"
     }
   ],
   "vendor": {
