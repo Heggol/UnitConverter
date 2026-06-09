@@ -20,7 +20,7 @@ target_sources(${PROJECT_NAME} PRIVATE ${RESOURCES})
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
-
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_autogen/include")
 if (MSVC)
   target_compile_options(${PROJECT_NAME} PRIVATE /EHsc /W4 /WX) # Exception Handler
 else()
