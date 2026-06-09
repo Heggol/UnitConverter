@@ -8,7 +8,8 @@ class UnitService {
    public:
     UnitService();
 
-    [[nodiscard]] double convert(double value, const std::string& from, const std::string& to, Mode mode = Mode::Strict) const;
+    [[nodiscard]] double convert(double value, const std::string& from, const std::string& to,
+                                 Mode mode = Mode::Strict) const;
 
     [[nodiscard]] std::vector<std::string> categories() const;
 
