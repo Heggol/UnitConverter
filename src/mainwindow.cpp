@@ -1,6 +1,7 @@
 #include "mainwindow.hpp"
 
 #include <format>
+#include <QGraphicsDropShadowEffect>
 
 #include "ui_mainwindow.h"
 
@@ -15,6 +16,11 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     ui->categoryList->hide();
     connect(ui->sidebarButton, &QPushButton::toggled, ui->categoryList, &QWidget::setVisible);
+    auto* shadowEffect = new QGraphicsDropShadowEffect();
+    shadowEffect->setBlurRadius(12);
+    shadowEffect->setOffset(4, 4);
+    shadowEffect->setColor(QColor(5,5,5,100));
+    ui->categoryList->setGraphicsEffect(shadowEffect);
 
     const auto categories = service.categories();
 
