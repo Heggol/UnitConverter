@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Unit Converter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="sidebarButton">
@@ -83,14 +83,17 @@
     <property name="selectionRectVisible">
      <bool>false</bool>
     </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>0</y>
-      <width>591</width>
-      <height>751</height>
+      <width>601</width>
+      <height>240</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="mainLayout">
@@ -100,12 +103,12 @@
         <enum>Qt::Orientation::Vertical</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Policy::Preferred</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
-         <height>10</height>
+         <height>25</height>
         </size>
        </property>
       </spacer>
@@ -131,23 +134,107 @@
         <enum>Qt::Orientation::Vertical</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Policy::Preferred</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
-         <height>40</height>
+         <height>75</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
-      <widget class="QListWidget" name="unitList">
-       <property name="minimumSize">
-        <size>
-         <width>256</width>
-         <height>0</height>
-        </size>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="1" rowspan="2">
+        <widget class="QLabel" name="convertLabel">
+         <property name="minimumSize">
+          <size>
+           <width>64</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>64</width>
+           <height>64</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can input to convert both ways&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::TextFormat::RichText</enum>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../icons/icons.qrc">:/convert.svg</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QDoubleSpinBox" name="inputR">
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QDoubleSpinBox" name="inputL">
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="unitDropdownR"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="unitDropdownL"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>240</y>
+      <width>601</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="extraLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="uhhhLabel">
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+         <italic>true</italic>
+         <bold>true</bold>
+         <underline>true</underline>
+         <strikeout>false</strikeout>
+         <kerning>true</kerning>
+         <hintingpreference>PreferDefaultHinting</hintingpreference>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::NoFrame</enum>
+       </property>
+       <property name="text">
+        <string>What do I even put here?</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -156,6 +243,7 @@
    <zorder>layoutWidget</zorder>
    <zorder>categoryList</zorder>
    <zorder>sidebarButton</zorder>
+   <zorder>gridLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

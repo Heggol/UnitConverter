@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
     <file>quit.svg</file>
+    <file>convert.svg</file>
   </qresource>
 </RCC>
