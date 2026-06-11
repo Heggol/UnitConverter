@@ -3,17 +3,23 @@
 #include <stdexcept>
 
 void registerData(UnitRegistry&);
+void registerEnergy(UnitRegistry&);
 void registerLength(UnitRegistry&);
 void registerMass(UnitRegistry&);
 void registerTemperature(UnitRegistry&);
+void registerVolume(UnitRegistry&);
 
 UnitService::UnitService() : converter(registry) { registerDefaults(); }
 
 void UnitService::registerDefaults() {
     registerData(registry);
+    registerEnergy(registry);
     registerLength(registry);
     registerMass(registry);
     registerTemperature(registry);
+    registerVolume(registry);
+
+    registry.registerEdges();
 }
 
 double UnitService::convert(double value, const std::string& from, const std::string& to, Mode mode) const {
@@ -25,7 +31,9 @@ double UnitService::convert(double value, const std::string& from, const std::st
     }
 
     if (mode == Mode::Everything) {
-        throw std::runtime_error("Everything mode not implemented yet");
+        double base = (value * A.scale) + A.offset;
+        double convertedBase = converter.convertBFS(base, A.category, B.category);
+        return (convertedBase - B.offset) * B.inv_scale;
     }
 
     throw std::runtime_error("Different categories");
