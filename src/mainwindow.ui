@@ -224,11 +224,7 @@
          <underline>true</underline>
          <strikeout>false</strikeout>
          <kerning>true</kerning>
-         <hintingpreference>PreferDefaultHinting</hintingpreference>
         </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
        </property>
        <property name="text">
         <string>What do I even put here?</string>

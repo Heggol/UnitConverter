@@ -9,10 +9,11 @@ set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
 qt_standard_project_setup()
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp src/*.hpp src/*.ui)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp src/*.hpp)
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+set_property(SOURCE src/mainwindow.cpp APPEND PROPERTY OBJECT_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/mainwindow.ui")
 
 qt_add_resources(RESOURCES icons/icons.qrc)
 target_sources(${PROJECT_NAME} PRIVATE ${RESOURCES})
