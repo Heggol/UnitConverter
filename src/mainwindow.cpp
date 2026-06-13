@@ -1,5 +1,6 @@
 #include "mainwindow.hpp"
 
+#include <QDoubleValidator>
 #include <QGraphicsDropShadowEffect>
 
 #include "ui_mainwindow.h"
@@ -37,6 +38,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         if (categoryName.isEmpty()) return;
 
         ui->labelCategoryTitle->setText(categoryName);
+
+        ui->unitDropdownL->blockSignals(true);
+        ui->unitDropdownR->blockSignals(true);
         ui->unitDropdownR->clear();
         ui->unitDropdownL->clear();
 
@@ -47,29 +51,58 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
             ui->unitDropdownL->addItem(QString::fromStdString(id));
         }
         ui->unitDropdownR->setCurrentIndex(1);
+        ui->unitDropdownL->blockSignals(false);
+        ui->unitDropdownR->blockSignals(false);
+
         ui->categoryList->hide();
         ui->sidebarButton->setChecked(false);
+        ui->inputL->clear();
+        ui->inputR->clear();
     });
 
-    ui->inputR->setMaximum(std::numeric_limits<double>::max());
-    ui->inputR->setDecimals(10);
-    ui->inputL->setMaximum(std::numeric_limits<double>::max());
-    ui->inputL->setDecimals(10);
-
-    connect(ui->inputR, &QDoubleSpinBox::valueChanged, this, [this](const double inputValue) {
+    connect(ui->unitDropdownL, &QComboBox::currentTextChanged, this, [this]() {
         const auto fromUnit = ui->unitDropdownR->currentText().toLower().toStdString();
         const auto toUnit = ui->unitDropdownL->currentText().toLower().toStdString();
-        const auto result = service.convert(inputValue, fromUnit, toUnit);
+        if (fromUnit.empty() || toUnit.empty()) return;
+        const auto value = ui->inputR->text().toDouble();
+        const auto result = service.convert(value, fromUnit, toUnit);
         ui->inputL->blockSignals(true);
-        ui->inputL->setValue(result);
+        ui->inputL->setText(QString::number(result, 'g', 10));
         ui->inputL->blockSignals(false);
     });
-    connect(ui->inputL, &QDoubleSpinBox::valueChanged, this, [this](const double inputValue) {
+    connect(ui->unitDropdownR, &QComboBox::currentTextChanged, this, [this]() {
         const auto fromUnit = ui->unitDropdownL->currentText().toLower().toStdString();
         const auto toUnit = ui->unitDropdownR->currentText().toLower().toStdString();
-        const auto result = service.convert(inputValue, fromUnit, toUnit);
+        if (fromUnit.empty() || toUnit.empty()) return;
+        const auto value = ui->inputL->text().toDouble();
+        const auto result = service.convert(value, fromUnit, toUnit);
         ui->inputR->blockSignals(true);
-        ui->inputR->setValue(result);
+        ui->inputR->setText(QString::number(result, 'g', 10));
+        ui->inputR->blockSignals(false);
+    });
+
+    const auto inputValidator = new QDoubleValidator(0.0, std::numeric_limits<double>::max(), 10);
+    ui->inputL->setValidator(inputValidator);
+    ui->inputR->setValidator(inputValidator);
+
+    connect(ui->inputR, &QLineEdit::textChanged, this, [this](const QString& inputString) {
+        const auto fromUnit = ui->unitDropdownR->currentText().toLower().toStdString();
+        const auto toUnit = ui->unitDropdownL->currentText().toLower().toStdString();
+        if (fromUnit.empty() || toUnit.empty()) return;
+        const auto value = inputString.toDouble();
+        const auto result = service.convert(value, fromUnit, toUnit);
+        ui->inputL->blockSignals(true);
+        ui->inputL->setText(QString::number(result, 'g', 10));
+        ui->inputL->blockSignals(false);
+    });
+    connect(ui->inputL, &QLineEdit::textChanged, this, [this](const QString& inputString) {
+        const auto fromUnit = ui->unitDropdownL->currentText().toLower().toStdString();
+        const auto toUnit = ui->unitDropdownR->currentText().toLower().toStdString();
+        if (fromUnit.empty() || toUnit.empty()) return;
+        const auto value = inputString.toDouble();
+        const auto result = service.convert(value, fromUnit, toUnit);
+        ui->inputR->blockSignals(true);
+        ui->inputR->setText(QString::number(result, 'g', 10));
         ui->inputR->blockSignals(false);
     });
 }
