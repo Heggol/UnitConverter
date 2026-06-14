@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UNITCONVERTER_SRC_CORE_CONVERTER_HPP_
+#define UNITCONVERTER_SRC_CORE_CONVERTER_HPP_
 #include <string>
 
 #include "registry.hpp"
@@ -13,3 +14,5 @@ class UnitConverter {
    private:
     const UnitRegistry* registry;
 };
+
+#endif

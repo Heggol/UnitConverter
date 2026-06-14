@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UNITCONVERTER_SRC_CORE_REGISTRY_HPP_
+#define UNITCONVERTER_SRC_CORE_REGISTRY_HPP_
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -30,3 +31,5 @@ class UnitRegistry {
 
     std::unordered_map<std::string, std::vector<ConversionEdge>> categoryGraph;
 };
+
+#endif

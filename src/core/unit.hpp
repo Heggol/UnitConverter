@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UNITCONVERTER_SRC_CORE_UNIT_HPP_
+#define UNITCONVERTER_SRC_CORE_UNIT_HPP_
 #include <string>
 
 struct Unit {
@@ -13,3 +14,5 @@ struct Unit {
 
     std::string description;
 };
+
+#endif

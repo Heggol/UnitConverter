@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UNITCONVERTER_SRC_CORE_SERVICE_HPP_
+#define UNITCONVERTER_SRC_CORE_SERVICE_HPP_
 #include "converter.hpp"
 #include "registry.hpp"
 
@@ -21,3 +22,5 @@ class UnitService {
 
     void registerDefaults();
 };
+
+#endif
