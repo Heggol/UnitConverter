@@ -4,7 +4,7 @@ void registerVolume(UnitRegistry& r) {
     r.addCategory({.id = "volume", .base_unit = "meters cubed"});
 
     r.addUnit({.id = "meters cubed",
-               .symbol = "m³", // cubed is \u00B3
+               .symbol = "m³",  // cubed is \u00B3
                .category = "volume",
                .scale = 1.0,
                .offset = 0.0,

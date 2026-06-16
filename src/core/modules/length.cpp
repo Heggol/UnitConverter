@@ -63,7 +63,7 @@ void registerLength(UnitRegistry& r) {
     r.addUnit({.id = "mil",
                .symbol = "thou",
                .category = "length",
-               .scale = 0.0000254, // thousandth of an inch
+               .scale = 0.0000254,  // thousandth of an inch
                .offset = 0.0,
                .inv_scale = 0.0,
                .description = ""});

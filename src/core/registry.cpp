@@ -38,7 +38,8 @@ const Category& UnitRegistry::getCategory(const std::string& id) const {
 const std::vector<ConversionEdge>& UnitRegistry::getEdges(const std::string& category) const {
     auto it = categoryGraph.find(category);
     if (it == categoryGraph.end()) {
-        return {};
+        static const std::vector<ConversionEdge> empty;
+        return empty;
     }
     return it->second;
 }
