@@ -36,7 +36,7 @@ double UnitService::convert(double value, const std::string& from, const std::st
         return (convertedBase - B.offset) * B.inv_scale;
     }
 
-    throw std::runtime_error("Different categories");
+    throw std::invalid_argument("Different categories");
 }
 
 std::vector<std::string> UnitService::categories() const { return registry.listCategories(); }

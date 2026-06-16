@@ -24,4 +24,11 @@ void registerTemperature(UnitRegistry& r) {
                .offset = 273.15 - (32.0 * 5.0 / 9.0),
                .inv_scale = 0.0,
                .description = "K = (F - 32) * 5/9 + 273.15"});
+    r.addUnit({.id = "rankine",
+               .symbol = "R",
+               .category = "kelvin",
+               .scale = 5.0 / 9.0,
+               .offset = 0.0,
+               .inv_scale = 0.0,
+               .description = "R = F + 459.67"});
 }

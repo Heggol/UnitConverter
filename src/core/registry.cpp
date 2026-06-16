@@ -22,7 +22,7 @@ void UnitRegistry::addEdge(const std::string& a, const std::string& b, std::func
 const Unit& UnitRegistry::getUnit(const std::string& id) const {
     auto it = units.find(id);
     if (it == units.end()) {
-        throw std::runtime_error("Unit not found: " + id);
+        throw std::invalid_argument("Unit not found: " + id);
     }
     return it->second;
 }
@@ -30,17 +30,15 @@ const Unit& UnitRegistry::getUnit(const std::string& id) const {
 const Category& UnitRegistry::getCategory(const std::string& id) const {
     auto it = categories.find(id);
     if (it == categories.end()) {
-        throw std::runtime_error("Category not found: " + id);
+        throw std::invalid_argument("Category not found: " + id);
     }
     return it->second;
 }
 
 const std::vector<ConversionEdge>& UnitRegistry::getEdges(const std::string& category) const {
-    static const std::vector<ConversionEdge> empty;
-
     auto it = categoryGraph.find(category);
     if (it == categoryGraph.end()) {
-        return empty;
+        return {};
     }
     return it->second;
 }

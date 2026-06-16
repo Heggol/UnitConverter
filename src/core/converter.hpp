@@ -12,7 +12,7 @@ class UnitConverter {
     [[nodiscard]] double convertBFS(double value, const std::string& from, const std::string& to) const;
 
    private:
-    const UnitRegistry* registry;
+    const UnitRegistry& registry;
 };
 
 #endif
